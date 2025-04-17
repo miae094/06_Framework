@@ -9,7 +9,7 @@
 			pstmt.setString(?, "user01")
 			pstmt.set???(?, null)
 		 -->
-		<setting name="jdbcTypeForNull" value="Null" />
+		<setting name="jdbcTypeForNull" value="NULL" />
 
 
 		<!-- 
