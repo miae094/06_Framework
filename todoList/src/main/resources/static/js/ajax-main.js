@@ -201,12 +201,12 @@ const selectTodoList = () => {
                     // a태그 클릭 시 페이지 이동 막기(비동기 요청 사용을 위해)
                     a.addEventListener("click", e => {
                         e.preventDefault(); // 기본 이벤트 방지
+                        
+                        // 할 일 상세 조회 비동기 요청 함수 호출
+                        selectTodo(e.target.href);
+                        
                     });
-
-                    // 할 일 상세 조회 비동기 요청 함수 호출
-                    selectTodo(e.target.href);
-
-
+                    
                     continue;
 
                 }
@@ -223,9 +223,20 @@ const selectTodoList = () => {
 // 비동기로 할 일 상세 조회하는 함수
 const selectTodo = (url) => {
     // 매개변수 url == "/ajax/detail?todoNo=1" 형태의 문자열
-
+    console.log("url : " , url);
     // fetch 요청 시 url 이용
+    fetch(url) 
+    .then (resp => resp.json())
+    .then(result => {
+        console.log(result);
+        popupTodoNo.innerText = result.todoNo;
+        popupTodoTitle.innerText = result.todoTitle;
+        popupComplete.innerText = result.complete;
+        popupRegDate.innerText = result.regDate;
+        popupTodoContent.innerText = result.todoContent;
 
+        popupLayer.classList.remove("popup-hidden");
+    })
 }
 getTotalCount();
 getCompleteCount();
