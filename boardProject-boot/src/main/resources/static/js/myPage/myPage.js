@@ -25,7 +25,11 @@ function execDaumPostcode() {
 }
 
 // 주소 검색버튼 클릭 시 
-document.querySelector("#searchAddress").addEventListener("click", execDaumPostcode);
+const searchAddress = document.querySelector("#searchAddress");
+
+if(searchAddress != null){
+    searchAddress.addEventListener("click", execDaumPostcode);
+}
 
 /* 회원 정보 수정 페이지 */
 const updateInfo = document.querySelector("#updateInfo"); // form 태그
@@ -142,7 +146,8 @@ if(updateInfo != null) {
 // 비밀번호 변경 form 태그
 const changePw = document.querySelector("#changePw");
 
-if(changePw != null) {
+// 현재 페이지에서 changePw 요소가 존재할 때 
+if(changePw != null) { // if(changePw) 로 사용해도 됨. 다른데서도 js 파일 사용하기 때문에 에러예방으로!
     // 제출 되었을 때
     changePw.addEventListener("submit", e => {
 
