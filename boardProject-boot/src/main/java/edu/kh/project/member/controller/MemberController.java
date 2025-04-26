@@ -1,5 +1,8 @@
 package edu.kh.project.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -178,5 +181,37 @@ public class MemberController {
 				
 		
 	}
+	
+	// -------------------------------------------------------
+	// 회원 아이디 찾기
+	
+	/** 회원 아이디 찾기 페이지로 이동
+	 * @return
+	 */
+	@GetMapping("findMember")
+	public String findMemberPage() {
+		return "member/findMember";
+	}
+	
+	@PostMapping("findMember")
+	public String findMember(@RequestParam("memberNickname") String memberNickname,
+							@RequestParam("memberTel") String memberTel,
+							RedirectAttributes ra) {
+		
+		
+		String memberEmail = service.findMember(memberNickname, memberTel);
+		
+		if(memberEmail != null) {
+			ra.addFlashAttribute("memberEmail", memberEmail);
+			
+		} else {
+			ra.addFlashAttribute("message", "일치하는 회원이 없습니다.");
+		}
+		
+		return "redirect:findMember";
+	}
+	
+	
+	
 	
 }

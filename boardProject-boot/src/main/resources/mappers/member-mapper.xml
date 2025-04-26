@@ -42,4 +42,14 @@
 		DEFAULT,
 		DEFAULT)
 	</insert>
+	
+	<!-- 회원 아이디 찾기 -->
+	<select id="findMember">
+		SELECT MEMBER_EMAIL
+		FROM "MEMBER"
+		WHERE MEMBER_TEL=#{memberTel}
+		AND MEMBER_NICKNAME=#{memberNickname}
+	</select>
+	
+	
 </mapper>

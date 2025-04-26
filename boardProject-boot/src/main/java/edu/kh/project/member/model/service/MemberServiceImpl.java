@@ -1,5 +1,8 @@
 package edu.kh.project.member.model.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -112,6 +115,18 @@ public class MemberServiceImpl implements MemberService {
 		
 		// 회원가입 mapper 메서드 호출
 		return mapper.signup(inputMember);
+	}
+
+	
+	// 회원 아이디 찾기 서비스
+	@Override
+	public String findMember(String memberNickname, String memberTel) {
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("memberNickname", memberNickname);
+		map.put("memberTel", memberTel);
+		
+		return mapper.findMember(map);
 	}
 
 }

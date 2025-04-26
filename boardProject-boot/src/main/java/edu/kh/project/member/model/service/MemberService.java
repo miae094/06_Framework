@@ -1,5 +1,7 @@
 package edu.kh.project.member.model.service;
 
+import java.util.Map;
+
 import edu.kh.project.member.model.dto.Member;
 
 public interface MemberService {
@@ -28,5 +30,12 @@ public interface MemberService {
 	 * @return
 	 */
 	int signup(Member inputMember, String[] memberAddress);
+
+	/** 회원 아이디 찾기 서비스
+	 * @param memberNickname
+	 * @param memberTel
+	 * @return
+	 */
+	String findMember(String memberNickname, String memberTel);
 
 }
