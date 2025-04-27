@@ -193,6 +193,12 @@ public class MemberController {
 		return "member/findMember";
 	}
 	
+	/** 회원 아이디 찾기
+	 * @param memberNickname
+	 * @param memberTel
+	 * @param ra
+	 * @return
+	 */
 	@PostMapping("findMember")
 	public String findMember(@RequestParam("memberNickname") String memberNickname,
 							@RequestParam("memberTel") String memberTel,
@@ -212,6 +218,13 @@ public class MemberController {
 	}
 	
 	
+	/** 회원 비밀번호 찾기 페이지로 이동
+	 * @return
+	 */
+	@GetMapping("findPw")
+	public String findPwPage() {
+		return "member/findPw";
+	}
 	
 	
 }
