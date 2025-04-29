@@ -38,4 +38,18 @@ public interface MemberService {
 	 */
 	String findMember(String memberNickname, String memberTel);
 
+	/** 회원 비밀번호 찾기(새로 설정) 서비스
+	 * @param inputMember
+	 * @return
+	 */
+	int findPw(Member inputMember);
+
+	/** 새로운 비밀번호 설정
+	 * @param newPw
+	 * @param memberEmail 
+	 * @param newPwConfirm
+	 * @return
+	 */
+	int changeNewPw(String newPw, String memberEmail);
+
 }

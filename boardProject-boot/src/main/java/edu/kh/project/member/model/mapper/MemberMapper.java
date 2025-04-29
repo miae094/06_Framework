@@ -40,4 +40,12 @@ public interface MemberMapper {
 	 */
 	String findMember(Map<String, String> map);
 
+	/** 회원 패스워드 찾기(새로 설정)
+	 * @param inputMember
+	 * @return
+	 */
+	int findPw(Member inputMember);
+
+	int changeNewPw(Map<String, String> map);
+
 }

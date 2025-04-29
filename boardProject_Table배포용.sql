@@ -59,8 +59,11 @@ SELECT * FROM MEMBER;
 
 -- 암호화된 비밀번호(평문 : pass01!) 업데이트
 UPDATE "MEMBER" SET
-MEMBER_PW='$2a$10$2keDJFkyOxbVCnUK4CpohOFxKbl3Csbjvon6xXHE6dnFjf003nsnq'
+MEMBER_PW='$2a$10$gkK7C96eAPii3XYikStXJ.0KK9h0zzmpHa07WdVS0R35dARWQxnuq'
 WHERE MEMBER_NO=1;
+
+
+
 
 COMMIT;
 
@@ -573,26 +576,27 @@ ORDER BY COMMENT_NO DESC;
 -- 부모 댓글 1의 자식 댓글
 INSERT INTO "COMMENT"	
 VALUES( SEQ_COMMENT_NO.NEXTVAL, '부모 1의 자식 1',
-			  DEFAULT, DEFAULT,	1998, 2, 2001);
+			  DEFAULT, DEFAULT,	1998, 2, 2002);
 			 
 INSERT INTO "COMMENT"	
 VALUES( SEQ_COMMENT_NO.NEXTVAL, '부모 1의 자식 2',
-			  DEFAULT, DEFAULT,	1998, 2, 2001);
+			  DEFAULT, DEFAULT,	1998, 2, 2002);
 			 
 			 
 -- 부모 댓글 2의 자식 댓글			 
 INSERT INTO "COMMENT"	
 VALUES( SEQ_COMMENT_NO.NEXTVAL, '부모 2의 자식 1',
-			  DEFAULT, DEFAULT,	1998, 2, 2002);
+			  DEFAULT, DEFAULT,	1998, 2, 2003);
 			 
 -- 부모 댓글 2의 자식 1의 자식 댓글			 
 INSERT INTO "COMMENT"	
 VALUES( SEQ_COMMENT_NO.NEXTVAL, '부모 2의 자식 1의 자식!!!',
-			  DEFAULT, DEFAULT,	1998, 2, 2006);
+			  DEFAULT, DEFAULT,	1998, 2, 2007);
 
 			 
 COMMIT;
 
+-- 4/29 여기까지 완료
 -------------------------------------------------------
 
 /* 좋아요 테이블(BOARD_LIKE) 샘플 데이터 추가 */

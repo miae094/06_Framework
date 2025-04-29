@@ -129,4 +129,35 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.findMember(map);
 	}
 
+	@Override
+	public int findPw(Member inputMember) {
+		
+		return mapper.findPw(inputMember);
+	}
+
+	// 새 비밀번호 설정
+	@Override
+	public int changeNewPw(String newPw, String memberEmail) {
+
+		
+		// 2. 같을 경우
+		// 새 비밀번호 암호화 (bcrypt.encode(평문))
+		String encPw = bcrypt.encode(newPw);
+		
+		// DB에 업데이트
+		// SQL 전달해야하는 데이터 2개(암호화 한 새 비번 encPw, 회원번호 memberNo)
+		// mapper 에 전달할 수 있는 전달인자는 단 1개!!!!!!!!!
+		// -> 묶어서 전달(paramMap 재활용)
+
+		// 1+"" => 숫자와 문자열 연산이기 때문에 문자열 됨
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("encPw", encPw);
+		map.put("memberEmail", memberEmail);
+		
+		
+		return mapper.changeNewPw(map);
+		
+	}
+
 }

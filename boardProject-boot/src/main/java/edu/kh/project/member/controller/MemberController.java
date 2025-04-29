@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -226,5 +227,62 @@ public class MemberController {
 		return "member/findPw";
 	}
 	
+	@PostMapping("findPw")
+	public String findPw(@ModelAttribute Member inputMember, RedirectAttributes ra, Model model ) {
+		
+		int result = service.findPw(inputMember);
+		Member loginMember = inputMember;
+		
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			// 결과값이 있을 경우
+			model.addAttribute("loginMember", loginMember);
+			path = "member/changeNewPw";
+			
+		} else {
+			// 결과 값이 없을 경우
+			message = "일치하는 회원정보가 없습니다.";
+			path = "redirect:findPw";
+		}
+		ra.addFlashAttribute("message", message);
+		
+		
+		return path;
+	}
+	
+	
+
+	@GetMapping("changeNewPw")
+	public String changeNewPw() {
+		return "member/changeNewPw";
+	}
+	
+	@PostMapping("changeNewPw")
+	public String changeNewPw(@RequestParam("newPw") String newPw, @ModelAttribute("loginMember") Member loginMember, RedirectAttributes ra, SessionStatus status) {
+		String memberEmail = loginMember.getMemberEmail();
+		log.debug("memberEmail : " + memberEmail);
+		
+		int result = service.changeNewPw(newPw, memberEmail);
+		
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			message = "비밀번호 변경에 성공하였습니다.\n다시 로그인 해주세요!";
+			path="redirect:/";
+			status.setComplete(); // 세션을 완료시킴(= @SessionAttribute로 등록된 세션 제거
+		} else {
+			message = "비밀번호 변경에 실패했습니다.\n관리자에게 문의해주세요.";
+			path = "redirect:findPw";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		
+		return path;
+		
+	}
 	
 }

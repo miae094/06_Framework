@@ -49,7 +49,26 @@
 		FROM "MEMBER"
 		WHERE MEMBER_TEL=#{memberTel}
 		AND MEMBER_NICKNAME=#{memberNickname}
+		AND MEMBER_DEL_FL='N'
 	</select>
+	
+	<!-- 회원 비밀번호 찾기 -->
+	<select id="findPw">
+		SELECT COUNT(*)
+		FROM "MEMBER"
+		WHERE MEMBER_EMAIL=#{memberEmail}
+		AND MEMBER_TEL=#{memberTel}
+		AND MEMBER_NICKNAME=#{memberNickname}
+		AND MEMBER_DEL_FL='N'
+	</select>
+	
+	<!-- 회원 비밀번호 찾기 후 새 비밀번호로 변경 -->
+	<update id="changeNewPw">
+		UPDATE "MEMBER" SET
+		MEMBER_PW = #{encPw}
+		WHERE MEMBER_EMAIL = #{memberEmail}
+	
+	</update>
 	
 	
 </mapper>
