@@ -37,4 +37,11 @@ public interface BoardService {
 	 */
 	int updateReadCount(int boardNo);
 
+	/** 검색서비스
+	 * @param paramMap 
+	 * @param cp 
+	 * @return
+	 */
+	Map<String, Object> serchList(Map<String, Object> paramMap, int cp);
+
 }
