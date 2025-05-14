@@ -33,7 +33,7 @@ public class ExceptionController {
 	@ExceptionHandler(NoResourceFoundException.class)
 	public String notFound() {
 		
-		return "error/404test"; // 타임리프 forward 구문!
+		return "error/404"; // 타임리프 forward 구문!
 	}
 	
 	// 프로젝트에서 발생하는 모든 종류의 예외를 잡아 처리하는 메서드
