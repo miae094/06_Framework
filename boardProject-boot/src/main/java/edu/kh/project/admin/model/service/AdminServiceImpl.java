@@ -54,6 +54,31 @@ public class AdminServiceImpl implements AdminService {
 	public List<Member> newMember() {
 		return mapper.newMember();
 	}
+
+	// 탈퇴 회원 조회
+	@Override
+	public List<Member> selectWithdrawnMemberList() {
+		
+		return mapper.selectWithdrawnMemberList();
+	}
+
+	// 삭제된 게시글 목록 조회
+	@Override
+	public List<Board> selectDeleteBoardList() {
+		return mapper.selectDeleteBoardList();
+	}
+
+	// 탈퇴 회원 복구
+	@Override
+	public int restoreMember(int memberNo) {
+		return mapper.restoreMember(memberNo);
+	}
+
+	// 삭제 게시글 복구
+	@Override
+	public int restoreBoard(int boardNo) {
+		return mapper.restoreBoard(boardNo);
+	}
 	
 	
 }
